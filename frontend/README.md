@@ -1,0 +1,3 @@
+# DailyCS-frontend
+## Stack
+- React
