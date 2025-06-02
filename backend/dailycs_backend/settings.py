@@ -30,6 +30,7 @@ INSTALLED_APPS = [
 
     # DRF
     'rest_framework',
+    'drf_yasg',
 
     # Local app
     'quiz',
