@@ -1,11 +1,12 @@
+// src/components/OptionButton.jsx
 import React from 'react';
 import { Button, Typography, Box } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
 
 /**
  * props:
- *  - label: 'A', 'B', 'C', 'D'
- *  - content: Markdown 형식의 선택지 텍스트
+ *  - label: 'A', 'B', 'C', 'D', ...
+ *  - content: Markdown 형식의 선택지 텍스트 (백엔드 그대로)
  *  - selected: boolean (현재 선택된 상태인지)
  *  - disabled: boolean (풀이 완료 후 선택 불가하게 할 때)
  *  - onClick: 선택 시 호출될 함수
@@ -24,6 +25,8 @@ const OptionButton = ({ label, content, selected, disabled, onClick }) => {
         p: 2,
         display: 'flex',
         alignItems: 'flex-start',
+        // **Button 기본 Uppercase 해제**
+        textTransform: 'none',
       }}
     >
       <Box sx={{ mr: 1, minWidth: 24 }}>
@@ -32,7 +35,7 @@ const OptionButton = ({ label, content, selected, disabled, onClick }) => {
         </Typography>
       </Box>
       <Box sx={{ flex: 1 }}>
-        <Typography variant="body2">
+        <Typography variant="body2" sx={{ whiteSpace: 'pre-wrap' }}>
           <ReactMarkdown>{content || ''}</ReactMarkdown>
         </Typography>
       </Box>
