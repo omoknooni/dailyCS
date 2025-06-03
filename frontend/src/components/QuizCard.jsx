@@ -1,38 +1,42 @@
 import React from 'react';
-import { Card, CardContent, Typography, CardActionArea } from '@mui/material';
+import { Card, CardContent, Typography, CardActions, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-/**
- * props:
- *  - quizSet: { id, title, description, category, ... }
- */
 const QuizCard = ({ quizSet }) => {
   const navigate = useNavigate();
-
-  const handleClick = () => {
-    // 클릭 시 해당 문제집 ID의 퀴즈 플레이 페이지로 이동
+  
+  const goPlay = () => {
     navigate(`/quiz/${quizSet.id}`);
+  };
+  const goMemorize = () => {
+    navigate(`/quiz/${quizSet.id}/memorization`);
   };
 
   return (
     <Card sx={{ mb: 2 }}>
-      <CardActionArea onClick={handleClick}>
-        <CardContent>
-          <Typography variant="h6" gutterBottom>
-            {quizSet.title}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            카테고리: {quizSet.category} | 문제 수: {quizSet.question_count || '?'}
-          </Typography>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{ mt: 1, whiteSpace: 'pre-wrap' }}
-          >
-            {quizSet.description}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <CardContent>
+        <Typography variant="h6" gutterBottom>
+          {quizSet.title}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          카테고리: {quizSet.category} | 문제 수: {quizSet.question_count || '?'}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ mt: 1, whiteSpace: 'pre-wrap' }}
+        >
+          {quizSet.description}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small" onClick={goPlay} sx={{ textTransform: 'none' }}>
+          문제 풀기
+        </Button>
+        <Button size="small" onClick={goMemorize} sx={{ textTransform: 'none' }}>
+          암기 모드
+        </Button>
+      </CardActions>
     </Card>
   );
 };

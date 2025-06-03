@@ -9,6 +9,7 @@ import QuizPlayPage from './pages/QuizPlayPage';
 import QuizResultPage from './pages/QuizResultPage';
 import CreateQuizSetPage from './pages/CreateQuizSetPage';
 import CreateQuestionPage from './pages/CreateQuestionPage';
+import MemorizationModePage from './pages/MemorizationModePage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -33,6 +34,9 @@ function App() {
             <Route path="/quiz/:quizSetId" element={<QuizPlayPage />} />
             {/* 퀴즈 결과 (옵션) */}
             <Route path="/quiz/:quizSetId/result" element={<QuizResultPage />} />
+
+            {/* 암기 모드 */}
+            <Route path="/quiz/:quizSetId/memorization" element={<MemorizationModePage />} />
           </Routes>
         </Container>
 
