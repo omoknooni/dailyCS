@@ -19,6 +19,7 @@ spec:
           containers:
           - name: dailycs-question-generator
             image: omoknooni/dailycs-question-generator:latest
+            imagePullPolicy: Never  # TODO: 이미지가 무거움, 경량화 한다음에 docker hub에 push예정
             envFrom:
             - secretRef:
                 name: aws-creds
