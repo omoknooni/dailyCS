@@ -1,0 +1,19 @@
+# PV for local single-node cluster
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-chroma-data-chromadb-0
+  namespace: dailycs
+  labels:
+    app: chromadb
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: "dailycs-chroma"
+  hostPath:
+    path: /mnt/c/User/hyeok/test/dailyCS/chroma-data
+  claimRef:                             # 바인딩할 PVC 정보
+    namespace: dailycs
+    name: chroma-data-chromadb-0        # PVC 이름 (StatefulSet이 생성하는 이름과 동일)
