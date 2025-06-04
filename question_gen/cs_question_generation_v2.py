@@ -323,6 +323,9 @@ def generate_and_store_question(custom_user_prompt=None):
 예시 세부주제 : CI/CD, 컨테이너, 모니터링, 배포, 인프라 자동화 등
 예시 키워드: Docker, Jenkins, argoCD, Kubernetes, 로드밸런싱, 오케스트레이션, ELK스택, PLG스택, RTO/RPO 등
 
+제시된 예시 세부주제 외에도, 각 메인 주제와 관련된 다양한 최신 또는 심화 개념을 자유롭게 발굴하여 문제를 생성할 수 있습니다.
+
+
 모든 내용을 JSON 형식으로 최종 출력하며, 다음 구조를 따라야합니다.
 ```
 {
@@ -394,7 +397,7 @@ def generate_and_store_question(custom_user_prompt=None):
             if is_manual_mode: 
                 s3_key_prefix = "cs-question-manual/"
             
-            question_file_key = f"{s3_key_prefix}q-{generated_data.get('topic', 'unknown')}-{now}.json"
+            question_file_key = f"{s3_key_prefix}q-{now}.json"
             
             s3_client.put_object(
                 Body=response.text.encode('utf-8'), # S3는 bytes를 선호
