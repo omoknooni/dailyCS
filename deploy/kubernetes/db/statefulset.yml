@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: dailycs-db
+  namespace: dailycs
+spec:
+  serviceName: dailycs-db
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dailycs-db
+  template:
+    metadata:
+      labels:
+        app: dailycs-db
+    spec:
+      containers:
+      - name: dailycs-db
+        image: mysql:latest
+        envFrom:
+        - secretRef:
+            name: dailycs-db-secret
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: mysql
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 2Gi
