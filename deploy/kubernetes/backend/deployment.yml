@@ -16,6 +16,9 @@ spec:
       containers:
       - name: backend
         image: omoknooni/dailycs-backend:latest
+        envFrom:
+        - secretRef:
+            name: backend-secret
         ports:
         - containerPort: 8001
 ---
