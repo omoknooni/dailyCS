@@ -1,8 +1,10 @@
 import axios from 'axios';
 
+const baseURL = process.env.REACT_APP_BACKEND_API_URL;
+
 // 1) 기본 Axios 인스턴스 생성
 const apiClient = axios.create({
-  baseURL: 'http://localhost:8000/api', // 백엔드 API 엔드포인트 (CORS 허용 필요)
+  baseURL: baseURL, // 백엔드 API 엔드포인트 (CORS 허용 필요)
   headers: {
     'Content-Type': 'application/json',
     // 추후 JWT 토큰이 있으면 Authorization 헤더 추가 가능
